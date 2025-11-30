@@ -1,9 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
+    loadTasks();
     const addButton = document.getElementById("add-task-btn");
     const taskInput = document.getElementById("task-input");
     const taskList = document.getElementById("task-list");
 
-     function addTask() {
+     function addTask(taskText, safe = true) {
         let taskText = taskInput.value.trim();
         if (taskText === "") {
             alert("enter a text");
@@ -25,6 +26,12 @@ document.addEventListener("DOMContentLoaded", function () {
         taskList.appendChild(li);
 
             taskInput.value = "";
+
+            if (save) {
+                const storedTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+                storedTasks.push(taskText);
+                localStorage.setItem("tasks", JSON.stringify(storedTasks));
+            }
         }
 
         function loadTasks() {
@@ -41,7 +48,5 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         });
         
-        document.addEventListener("DOMContentLoaded", () => {
-            addTask();
-        });
+        addTask();
     });
