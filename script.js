@@ -18,7 +18,11 @@ document.addEventListener("DOMContentLoaded", function () {
         removeBtn.classList.add("remove-btn")
         removeBtn.onclick = () => {
             taskList.removeChild(li);
-        }
+        
+        } 
+        li.appendChild(removeBtn);
+
+        taskList.appendChild(li);
 
             taskInput.value = "";
         }
